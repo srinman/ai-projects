@@ -1,0 +1,61 @@
+apiVersion: kaito.sh/v1beta1
+inference:
+  preset:
+    accessMode: public
+    name: llama-3.1-8b-instruct
+    presetOptions: {}
+kind: Workspace
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"kaito.sh/v1alpha1","inference":{"preset":{"name":"llama-3.1-8b-instruct"}},"kind":"Workspace","metadata":{"annotations":{},"name":"workspace-llama-3-1-8b","namespace":"default"},"resource":{"instanceType":"Standard_NC40ads_H100_v5","labelSelector":{"matchLabels":{"apps":"llama-3-1-8b"}}}}
+    workspace.kaito.io/hash: cfe56ba75ca43607da6b6353569506130a2133a00eabfcc71adf383a766328eb
+    workspace.kaito.io/revision: "1"
+  creationTimestamp: "2025-10-22T20:17:11Z"
+  finalizers:
+  - workspace.finalizer.kaito.sh
+  generation: 2
+  name: workspace-llama-3-1-8b
+  namespace: default
+  resourceVersion: "31008"
+  uid: 2c5c68fa-f318-4602-be6a-4e7868dc18d2
+resource:
+  count: 1
+  instanceType: Standard_NC40ads_H100_v5
+  labelSelector:
+    matchLabels:
+      apps: llama-3-1-8b
+status:
+  conditions:
+  - lastTransitionTime: "2025-10-22T20:22:07Z"
+    message: nodeClaim plugins have been installed successfully
+    observedGeneration: 2
+    reason: installNodePluginsSuccess
+    status: "True"
+    type: NodeClaimReady
+  - lastTransitionTime: "2025-10-22T20:22:07Z"
+    message: workspace resource is ready
+    observedGeneration: 2
+    reason: workspaceResourceStatusSuccess
+    status: "True"
+    type: ResourceReady
+  - lastTransitionTime: "2025-10-22T20:21:11Z"
+    message: 'Deployment.apps "workspace-llama-3-1-8b" is invalid: spec.template.spec.containers[0].env[0].valueFrom.secretKeyRef.name:
+      Invalid value: "": a lowercase RFC 1123 subdomain must consist of lower case
+      alphanumeric characters, ''-'' or ''.'', and must start and end with an alphanumeric
+      character (e.g. ''example.com'', regex used for validation is ''[a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*'')'
+    observedGeneration: 2
+    reason: workspaceFailed
+    status: "False"
+    type: WorkspaceSucceeded
+  - lastTransitionTime: "2025-10-22T20:22:08Z"
+    message: 'Deployment.apps "workspace-llama-3-1-8b" is invalid: spec.template.spec.containers[0].env[0].valueFrom.secretKeyRef.name:
+      Invalid value: "": a lowercase RFC 1123 subdomain must consist of lower case
+      alphanumeric characters, ''-'' or ''.'', and must start and end with an alphanumeric
+      character (e.g. ''example.com'', regex used for validation is ''[a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*'')'
+    observedGeneration: 2
+    reason: WorkspaceInferenceStatusFailed
+    status: "False"
+    type: InferenceReady
+  workerNodes:
+  - aks-ws67316638a-15780261-vmss000000
