@@ -111,12 +111,8 @@ This demo deploys the high-performant multimodal Microsoft Phi-4-mini language m
 ### Deploy Phi-4-Mini Model
 
 ```bash
-# Option 1: Deploy with default instance type (A100)
-kubectl apply -f https://raw.githubusercontent.com/kaito-project/kaito/refs/heads/main/examples/inference/kaito_workspace_phi_4_mini.yaml
-
-# Option 2: Deploy with custom instance type (H100)
-# Create a custom workspace configuration for H100 GPU
-cat > phi-4-mini-h100.yaml << EOF
+# Deploy with custom instance type (H100)
+kubectl apply -f - << EOF
 apiVersion: kaito.sh/v1beta1
 kind: Workspace
 metadata:
@@ -130,32 +126,11 @@ inference:
   preset:
     name: phi-4-mini-instruct
 EOF
-
-# Deploy with H100 GPU
-kubectl apply -f phi-4-mini-h100.yaml
 ```
 
 
 
 ```bash
-# Deploy the Phi-4-mini instruct model
-# This command downloads and applies a KAITO workspace configuration that:
-# - Creates a Workspace custom resource for Phi-4-Mini model
-# - Automatically provisions GPU-enabled nodes (if needed)
-# - Deploys the model container with vLLM inference engine
-# - Sets up a Kubernetes service for API access
-# - Configures OpenAI-compatible API endpoints
-kubectl apply -f https://raw.githubusercontent.com/kaito-project/kaito/refs/heads/main/examples/inference/kaito_workspace_phi_4_mini.yaml
-
-# Track deployment progress (this can take 10-20 minutes)
-# The workspace will go through these phases:
-# 1. Pending - Initial resource creation
-# 2. NodeClaiming - Provisioning GPU nodes
-# 3. NodeReady - Node is available
-# 4. WorkspaceReady - Model is loaded and serving
-kubectl get workspace workspace-phi-4-mini-h100 -w
-
-# Alternative: Check status without watching
 kubectl get workspace workspace-phi-4-mini-h100
 
 # Example output during deployment:
@@ -265,6 +240,8 @@ curl -X POST http://$SERVICE_IP/v1/chat/completions \
 ```bash
 # Delete all workspaces
 kubectl delete workspace --all
+k get node 
+k describe node <replace-with-gpunode>
 
 # Delete the entire cluster
 az aks delete \
