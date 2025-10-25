@@ -43,6 +43,7 @@ Azure provides multiple pathways for deploying and serving AI models, each optim
 | **Azure ML** | Managed Endpoints | Platform-managed | ✅ Supported | Auto + Manual | MLOps integration, Governance |
 
 
+There are other options - Azure OpenAI, AI Foundry, etc but they are not included in this comparison.    
 
 ### 🎯 **Detailed Comparison Matrix**
 
