@@ -1,0 +1,117 @@
+{
+  "index_name": "blog_index",
+  "documents": [
+    {
+      "text": "AKS Scaling Deep Dive — Understanding Your Options - A comprehensive exploration of AKS scaling mechanisms and architectural decision guidance for HPA, Cluster Autoscaler, NAP, KEDA, VPA, and Fleet",
+      "metadata": {
+        "author": "Sridher Manivel",
+        "category": "container",
+        "url": "https://blog.srinman.com/aks-scaling/"
+      }
+    },
+    {
+      "text": "AKS vs Azure Container Apps - Understanding the Architectural Trade-offs - A comprehensive comparison of Azure Kubernetes Service (AKS) and Azure Container Apps (ACA)",
+      "metadata": {
+        "author": "Sridher Manivel",
+        "category": "container",
+        "url": "https://blog.srinman.com/aks-aca/"
+      }
+    },
+    {
+      "text": "Certificates, End-to-End TLS, Cert manager and Service mesh - Understanding certificate basics, implementing TLS with Certbot, Certmanager and comparing with Service mesh",
+      "metadata": {
+        "author": "Sridher Manivel",
+        "category": "container",
+        "url": "https://blog.srinman.com/certmanager-tls-servicemesh/"
+      }
+    },
+    {
+      "text": "MCP Use Case on Azure - Memento Memory Storage Demo - Demonstrating a simple MCP use case called 'Memento' - hosting an MCP server on AKS with Azure Files storage for personal memory management",
+      "metadata": {
+        "author": "Sridher Manivel",
+        "category": "container",
+        "url": "https://blog.srinman.com/mcpusecaseonazure/"
+      }
+    },
+    {
+      "text": "Model Context Protocol (MCP) - From Hello World to Azure OpenAI Integration - Complete learning journey for MCP: from basic concepts to production Azure OpenAI integration with real-time tools",
+      "metadata": {
+        "author": "Sridher Manivel",
+        "category": "container",
+        "url": "https://blog.srinman.com/mcponazure/"
+      }
+    },
+    {
+      "text": "Using EntraID JWT to verify external calls with Istio add-on on AKS - How to setup Istio CRDs to verify EntraID JWT and allow/deny calls",
+      "metadata": {
+        "author": "Sridher Manivel",
+        "category": "container",
+        "url": "https://blog.srinman.com/aksistiojwtauth/"
+      }
+    },
+    {
+      "text": "Using External Auth with Istio add-on on AKS - How to setup external auth as a sidecar or a service on AKS",
+      "metadata": {
+        "author": "Sridher Manivel",
+        "category": "container",
+        "url": "https://blog.srinman.com/aksistioexternalauth/"
+      }
+    },
+    {
+      "text": "Trusted identity but secretless call to APIM - Call APIM or any other service with a token based on workload identity",
+      "metadata": {
+        "author": "Sridher Manivel",
+        "category": "container",
+        "url": "https://blog.srinman.com/workloadidentity2apim/"
+      }
+    },
+    {
+      "text": "Azure Container App - Traffic Splitting - Canary deployment with Azure Container Apps",
+      "metadata": {
+        "author": "Sridher Manivel",
+        "category": "container",
+        "url": "https://blog.srinman.com/blog6/"
+      }
+    },
+    {
+      "text": "Custom domain and APIM - Custom domain process with Azure services",
+      "metadata": {
+        "author": "Sridher Manivel",
+        "category": "container",
+        "url": "https://blog.srinman.com/blog5/"
+      }
+    },
+    {
+      "text": "SFTP and Azure Blob Storage - Use SFTP protocol to access files in Azure Blob Storage",
+      "metadata": {
+        "author": "Sridher Manivel",
+        "category": "container",
+        "url": "https://blog.srinman.com/blog4/"
+      }
+    },
+    {
+      "text": "AKS Workload Identity in Practice - Workload Identity in practice",
+      "metadata": {
+        "author": "Sridher Manivel",
+        "category": "container",
+        "url": "https://blog.srinman.com/blog3/"
+      }
+    },
+    {
+      "text": "Kubernetes as a Service - AKS and Kubernetes as a Service",
+      "metadata": {
+        "author": "Sridher Manivel",
+        "category": "container",
+        "url": "https://blog.srinman.com/blog7/"
+      }
+    },
+    {
+      "text": "Azure Container Options - Container Options in Azure",
+      "metadata": {
+        "author": "Sridher Manivel",
+        "category": "container",
+        "url": "https://blog.srinman.com/blog1/"
+      }
+    }
+  ]
+}
