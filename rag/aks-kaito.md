@@ -134,7 +134,7 @@ Here's the complete workflow from setup to querying:
 
 #### Prep work 
 
-Sample index file has been created for the testing.  
+A sample index file has been generated for testing, using content from blog.srinman.com. Once this index is ingested, the RAG pipeline can retrieve relevant blog information without requiring internet access or direct connectivity to the blog site.  
 
 Start port-forwarding (keep running in separate terminal)   
 
@@ -142,11 +142,6 @@ Start port-forwarding (keep running in separate terminal)
 kubectl port-forward svc/ragengine-start 8000:80
 ``` 
 
-#### Verify indexing
-```bash 
-curl http://localhost:8000/indexes
-curl http://localhost:8000/indexes/blog_index/documents  
-``` 
 
 
 #### Populate RAG with index   
@@ -208,55 +203,6 @@ curl -s http://localhost:8000/query \
 ```
 
 
-```bash 
-curl -s http://localhost:8000/v1/chat/completions \
--X POST \
--H "Content-Type: application/json" \
--d '{
-  "model": "phi-4-mini-instruct",
-  "query": "solar",
-  "top_k": 1,
-  "llm_params": {
-    "temperature": 0.7,
-    "max_tokens": 2048
-  }
-}' | jq
-```
-
-##### Issue a query against simple index   
-```bash 
-curl -s http://localhost:8000/query \
--X POST \
--H "Content-Type: application/json" \
--d '{
-  "index_name": "blog_simple_index",
-  "model": "phi-4-mini-instruct",
-  "query": "what is rag",
-  "top_k": 2,
-  "llm_params": {
-    "temperature": 0.3,
-    "max_tokens": 2048
-  }
-}' | jq
-```
-
-##### Issue a chat completion against simple index    
-
-```bash
-# Query with index_name for RAG-enhanced responses
-curl -X POST http://localhost:8000/v1/chat/completions \
- -H "Content-Type: application/json" \
- -d '{
-    "index_name": "blog_simple_index",
-    "model": "phi-4-mini-instruct",
-    "messages": [
-      {
-        "role": "user",
-        "content": "really confused with options in Azure for containerized apps. Can you suggest a blog?"
-      }
-    ], "max_tokens": 100
-   }' | jq -r '.choices[0].message.content'
-```
 
 
 
