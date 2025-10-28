@@ -61,14 +61,13 @@ helm list -n kaito-ragengine
 kubectl describe deploy kaito-ragengine -n kaito-ragengine
 ```
 
-## Deploy KAITO Workspace for Inference
+## Deploy KAITO CRDs  
 
 You can apply workspace and ragengine one after the other - don't need to wait for workspace to complete before applying ragengine    
 
-
 ### Deploy Phi-4-Mini Workspace with H100 GPU
 
-```bash
+```bash 
 # Deploy with custom instance type (H100)
 kubectl apply -f - << EOF
 apiVersion: kaito.sh/v1beta1
@@ -86,7 +85,6 @@ inference:
 EOF
 ```
 
-## Deploy RAGEngine Instance
 
 ### Create RAGEngine with BGE Embedding Model
 
@@ -112,20 +110,13 @@ EOF
 ```
 
 
-## Verify workspace and ragengine
+### Verify workspace and ragengine
 
 ```bash
 k get workspace
 k get ragengine
 ``` 
 
-## Access RAGEngine Service
-
-### Port Forward to Local Machine
-
-```bash
-kubectl port-forward svc/ragengine-start 8000:80
-```
 
 
 ### API Reference
@@ -291,7 +282,7 @@ k delete ragengine ragengine-start
 ``` 
 
 
-### Resources
+## Resources
 
 - **KAITO Documentation**: https://kaito-project.github.io/kaito/
 - **RAG API Reference**: https://kaito-project.github.io/kaito/docs/rag-api
