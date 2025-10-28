@@ -70,7 +70,7 @@ This repository contains comprehensive guides for implementing AI inferencing on
 | Guide | Technology Stack | Complexity | Deployment Time | Best For |
 |-------|-----------------|------------|-----------------|----------|
 | **[KAITO (AKS)](./aks-kaito.md)** | Kubernetes + KAITO Operator | ⭐⭐⭐ | 20-30 minutes | Enterprise, Self-hosted AI |
-| **[ACA Serverless](./aca-serverless.md)** | Azure Container Apps | ⭐⭐ | 10-15 minutes | Rapid prototyping, Variable workloads |
+| **[ACA Work in progress]** | Azure Container Apps | ⭐⭐ | 10-15 minutes | Rapid prototyping, Variable workloads |
 
 ---
 

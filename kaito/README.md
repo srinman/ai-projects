@@ -8,6 +8,12 @@
 
 KAITO provides comprehensive solutions across the entire ML lifecycle:
 
+#### 🛠 **Infrastructure Automation**
+- **Auto-Provisioning**: On-demand GPU node creation and lifecycle management
+- **Resource Optimization**: Intelligent instance selection based on model requirements
+- **Cost Management**: Automatic scaling and node deallocation when not in use
+- **Multi-Cloud Support**: Azure (production), AWS (coming soon)
+
 #### 🎯 **Inferencing with Open-Source Models**
 - **50+ Pre-configured Models**: Phi, Llama, Mistral, Qwen, Falcon families ready to deploy
 - **Automatic Optimization**: GPU memory utilization, tensor parallelism, and batching
@@ -20,17 +26,43 @@ KAITO provides comprehensive solutions across the entire ML lifecycle:
 - **Custom Dataset Support**: Automated data loading and preprocessing pipelines
 - **Experiment Management**: Version control for models, datasets, and training configurations
 
-#### 🛠 **Infrastructure Automation**
-- **Auto-Provisioning**: On-demand GPU node creation and lifecycle management
-- **Resource Optimization**: Intelligent instance selection based on model requirements
-- **Cost Management**: Automatic scaling and node deallocation when not in use
-- **Multi-Cloud Support**: Azure (production), AWS (coming soon)
+#### 🔍 **Retrieval-Augmented Generation (RAG) with Your Data**
+- **RAGEngine CRD**: Kubernetes-native RAG deployment with vector databases and embedding models
+- **Automated Components**: Built-in FAISS vector database and BGE embedding model integration
+- **Custom Knowledge Bases**: Index your documents, blogs, wikis, or internal knowledge repositories
+- **OpenAI-Compatible API**: Drop-in RAG endpoints that extend LLM responses with your data
+- **Production-Ready**: Automatic scaling, persistent storage, and health monitoring
+- **Zero-Infrastructure Overhead**: Deploy RAG applications without managing vector databases separately
 
+---
 
+## 📚 Documentation Structure
 
+This repository provides comprehensive guides for different KAITO use cases:
 
+### Core Documentation
+- **This Document**: KAITO overview, architecture, and fundamental concepts
+- **[Inferencing Guide](../kaito-inferencing/README.md)**: Deploy and serve pre-trained models for real-time inference
+- **[RAG Implementation Guide](../kaito-rag/README.md)**: Build Retrieval-Augmented Generation systems with custom data
 
-#### When Self-Hosted Models Make Sense:
+### What Each Guide Covers
+
+**Inferencing Guide** - Focus on model deployment:
+- Deploying 50+ pre-configured models (Phi, Llama, Mistral, etc.)
+- OpenAI-compatible API endpoints
+- Performance optimization and scaling
+- Production monitoring and troubleshooting
+
+**RAG Guide** - Focus on knowledge-enhanced AI:
+- RAG pattern fundamentals and architecture
+- Crawling and chunking your content
+- Building vector indexes from custom data
+- Deploying RAGEngine with embedding models
+- Interactive chat interfaces for testing
+
+---
+
+### When Self-Hosted Models Make Sense:
 
 **Enterprise Use Cases:**
 - **Regulated Industries**: Healthcare, finance, government with strict data governance
