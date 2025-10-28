@@ -12,7 +12,7 @@ KAITO provides comprehensive solutions across the entire ML lifecycle:
 - **Auto-Provisioning**: On-demand GPU node creation and lifecycle management
 - **Resource Optimization**: Intelligent instance selection based on model requirements
 - **Cost Management**: Automatic scaling and node deallocation when not in use
-- **Multi-Cloud Support**: Azure (production), AWS (coming soon)
+- **Multi-Cloud Support**: Azure (production) with AKS add-on, other clouds (coming soon)
 
 #### 🎯 **Inferencing with Open-Source Models**
 - **50+ Pre-configured Models**: Phi, Llama, Mistral, Qwen, Falcon families ready to deploy
@@ -48,7 +48,7 @@ This repository provides comprehensive guides for different KAITO use cases:
 ### What Each Guide Covers
 
 **Inferencing Guide** - Focus on model deployment:
-- Deploying 50+ pre-configured models (Phi, Llama, Mistral, etc.)
+- Deploying 12+ pre-configured models (Phi, Llama, Mistral, etc.) - supported [models](https://github.com/kaito-project/kaito/tree/main/presets/workspace/models)
 - OpenAI-compatible API endpoints
 - Performance optimization and scaling
 - Production monitoring and troubleshooting
@@ -107,11 +107,13 @@ vLLM:
   https://www.youtube.com/watch?v=lxjWiVuK5cA   
 Steve Griffith:    
   https://www.youtube.com/watch?v=u9rnPE8mpps    
+Upstream @AKS with Ernest Wong: 
+  https://www.youtube.com/watch?v=ItVNurreU-g  
+Kubernetes Bytes Podcast with Sachi and Paul:  
+  https://www.youtube.com/watch?v=q83sB1SSALQ
 
-
-
+KAITO Architecture:  
 https://kaito-project.github.io/kaito/docs/#architecture   
-
 
 ![alt text](image-3.png)
 ---
@@ -126,7 +128,7 @@ https://kaito-project.github.io/kaito/docs/#architecture
 
 ### Supported Configurations
 - ✅ **OS**: Ubuntu, CentOS, RHEL (AzureLinux and Windows not supported)
-- ✅ **GPU**: NVIDIA GPU VM sizes (AMD GPU not supported)
+- ✅ **GPU**: NVIDIA GPU VM sizes  
 - ✅ **Regions**: All public Azure regions
 
 ---
@@ -368,21 +370,8 @@ kubectl describe nodes
 # Check resource constraints
 kubectl describe workspace workspace-name
 
-# Verify GPU drivers
-kubectl get pods -n kube-system | grep nvidia
 ```
 
-#### 3. Service Connection Issues
-```bash
-# Check service endpoints
-kubectl get endpoints
-
-# Verify network policies
-kubectl get networkpolicies
-
-# Test internal connectivity
-kubectl run debug --image=curlimages/curl -it --rm -- /bin/sh
-```
 
 ### Useful Debug Commands
 
@@ -393,11 +382,6 @@ kubectl cluster-info dump
 # Check KAITO operator logs (correct pod names)
 kubectl logs -n kube-system -l app=kaito-workspace
 
-# Check KAITO NVIDIA device plugin
-kubectl logs -n kube-system -l app=kaito-nvidia-device-plugin
-
-# Describe all resources in workspace
-kubectl describe all -l kaito.sh/workspace=workspace-name
 
 # Verify KAITO CRDs are installed
 kubectl get crd | grep kaito
