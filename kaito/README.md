@@ -15,7 +15,7 @@ KAITO provides comprehensive solutions across the entire ML lifecycle:
 - **Multi-Cloud Support**: Azure (production) with AKS add-on, other clouds (coming soon)
 
 #### 🎯 **Inferencing with Open-Source Models**
-- **50+ Pre-configured Models**: Phi, Llama, Mistral, Qwen, Falcon families ready to deploy
+- **Pre-configured Models**: Phi, Llama, Mistral, Qwen, Falcon families ready to deploy
 - **Automatic Optimization**: GPU memory utilization, tensor parallelism, and batching
 - **OpenAI Compatibility**: Drop-in replacement for OpenAI API endpoints
 - **Production Ready**: Built-in health checks, metrics, and scaling capabilities
