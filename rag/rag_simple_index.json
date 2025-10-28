@@ -1,5 +1,5 @@
 {
-  "index_name": "blog_index",
+  "index_name": "blog_simple_index",
   "documents": [
     {
       "text": "AKS Scaling Deep Dive — Understanding Your Options - A comprehensive exploration of AKS scaling mechanisms and architectural decision guidance for HPA, Cluster Autoscaler, NAP, KEDA, VPA, and Fleet",

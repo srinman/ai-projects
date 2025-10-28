@@ -127,14 +127,101 @@ k get ragengine
 kubectl port-forward svc/ragengine-start 8000:80
 ```
 
+## RAG Operations and Testing
+
+### Building Your Own RAG Index
+
+For production RAG systems, you should crawl actual blog content and chunk it appropriately. Use the provided `build_rag_index.py` program:
+
+```bash
+# Install dependencies
+pip install requests beautifulsoup4
+
+# Build index from blog.srinman.com
+python build_rag_index.py
+
+# This will create: rag_blog_chunked_index.json
+```
+
+**What the builder does:**
+1. Crawls all blog posts from blog.srinman.com
+2. Extracts clean text content
+3. Chunks content into ~300 word sections with overlap
+4. Adds metadata (author, category, URL, section)
+5. Creates RAGEngine-compatible JSON index
+
+**Index Quality Benefits:**
+- ✅ Full blog content (not just titles)
+- ✅ Semantic chunking (paragraph boundaries)
+- ✅ Rich context for embeddings
+- ✅ Better retrieval accuracy
+
+See `RAG_INDEX_README.md` for detailed documentation on the RAG pattern and program usage.
 
 ### API Reference
 For complete API documentation: https://kaito-project.github.io/kaito/docs/rag-api
 
+### Index Your Data
+
+```bash
+# Build index from rag_index.json (simple version)
+curl -X POST http://localhost:8000/index \
+-H "Content-Type: application/json" \
+-d @rag_index.json | jq
+
+# OR build from crawled content (recommended)
+curl -X POST http://localhost:8000/index \
+-H "Content-Type: application/json" \
+-d @rag_blog_chunked_index.json | jq
+```
+
+### Verify Index Creation
+
+```bash
+# Check available indexes
+curl  http://localhost:8000/indexes
+
+# List documents in blog_index
+curl  http://localhost:8000/indexes/blog_index/documents | jq
+```
+
+### Query with RAG (Retrieval-Augmented) 
+
+```bash
+# Query with index_name for RAG-enhanced responses
+curl -X POST http://localhost:8000/v1/chat/completions \
+ -H "Content-Type: application/json" \
+ -d '{
+    "index_name": "blog_index",
+    "model": "phi-4-mini-instruct",
+    "messages": [
+      {
+        "role": "user",
+        "content": "really confused with options in Azure for containerized apps. Can you suggest a blog?"
+      }
+    ], "max_tokens": 100
+   }' | jq -r '.choices[0].message.content'
+```
+
+### Query without RAG (Direct LLM)
+
+```bash
+# Query without index_name for standard LLM responses
+curl -X POST http://localhost:8000/v1/chat/completions \
+ -H "Content-Type: application/json" \
+ -d '{
+    "model": "phi-4-mini-instruct",
+    "messages": [
+      {
+        "role": "user",
+        "content": "really confused with options in Azure for containerized apps. Can you suggest a blog?"
+      }
+    ], "max_tokens": 100
+   }' | jq -r '.choices[0].message.content'
+```
 
 
-
-## RAG Operations and Testing - Complete Workflow Summary
+## Complete Workflow Summary
 
 ### End-to-End RAG Setup
 
@@ -143,7 +230,14 @@ Here's the complete workflow from setup to querying:
 
 #### Prep work 
 
-Sample index file has been created for the testing.  
+```bash
+# 1. Prerequisites (one-time setup)
+pip install streamlit requests beautifulsoup4
+
+# 2. Build your RAG index (from actual blog content)
+python build_rag_index.py
+# Output: rag_blog_chunked_index.json
+``` 
 
 Start port-forwarding (keep running in separate terminal)   
 
@@ -158,11 +252,13 @@ curl http://localhost:8000/indexes/blog_index/documents
 ``` 
 
 
-#### Populate RAG with index   
+#### Populate RAG with index  (two indexes - one simple and another with all the chunks)    
 
-
-Following command creates index 
 ```bash
+curl -X POST http://localhost:8000/index \
+  -H "Content-Type: application/json" \
+  -d @rag_blog_chunked_index.json | jq
+
 curl -X POST http://localhost:8000/index \
   -H "Content-Type: application/json" \
   -d @rag_simple_index.json | jq
@@ -171,7 +267,7 @@ curl -X POST http://localhost:8000/index \
 #### Verify indexing
 ```bash 
 curl http://localhost:8000/indexes
-curl http://localhost:8000/indexes/blog_simple_index/documents  
+curl http://localhost:8000/indexes/blog_index/documents  
 ```
 
 
@@ -197,9 +293,26 @@ curl -s http://localhost:8000/query \
 }' | jq
 ```
 
+##### Issue a query against simple index   
+
+```bash 
+curl -s http://localhost:8000/query \
+-X POST \
+-H "Content-Type: application/json" \
+-d '{
+  "index_name": "blog_chunked_index",
+  "model": "phi-4-mini-instruct",
+  "query": "blog about container apps",
+  "top_k": 1,
+  "llm_params": {
+    "temperature": 0.7,
+    "max_tokens": 2048
+  }
+}' | jq
+``` 
 
 
-##### Issue a query against simple index - with a totally different search subject
+##### Issue a query against simple index   
 ```bash 
 curl -s http://localhost:8000/query \
 -X POST \
@@ -216,21 +329,6 @@ curl -s http://localhost:8000/query \
 }' | jq
 ```
 
-
-```bash 
-curl -s http://localhost:8000/v1/chat/completions \
--X POST \
--H "Content-Type: application/json" \
--d '{
-  "model": "phi-4-mini-instruct",
-  "query": "solar",
-  "top_k": 1,
-  "llm_params": {
-    "temperature": 0.7,
-    "max_tokens": 2048
-  }
-}' | jq
-```
 
 ##### Issue a query against simple index   
 ```bash 
@@ -270,14 +368,20 @@ curl -X POST http://localhost:8000/v1/chat/completions \
 
 
 
-##### Delete index   
+##### Issue a chat completion against simple index    
 
 ```bash   
 curl http://localhost:8000/indexes
 
+curl -X DELETE http://localhost:8000/indexes/blog_index
 curl -X DELETE http://localhost:8000/indexes/blog_simple_index
 ```  
 
+
+# 7. Test with UI
+```bash 
+streamlit run rag_chat_app.py
+```
 
 
 
@@ -297,7 +401,7 @@ k delete ragengine ragengine-start
 - **RAG API Reference**: https://kaito-project.github.io/kaito/docs/rag-api
 - **Example Cookbook**: https://github.com/kaito-project/kaito-cookbook
 - **Blog Source**: https://blog.srinman.com/
-- **Blog from AKS Engineering**: https://blog.aks.azure.com/2025/09/12/pair-llmd-and-rag-on-aks  
+
 ---
 
 **Built with ❤️ for learning RAG patterns on Azure Kubernetes Service**

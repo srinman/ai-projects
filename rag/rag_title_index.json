@@ -1,0 +1,255 @@
+{
+  "index_name": "blog_title_index",
+  "documents": [
+    {
+      "text": "Azure Kubernetes Service (AKS) scaling deep dive covers multiple autoscaling mechanisms including Horizontal Pod Autoscaler (HPA), Cluster Autoscaler, Node Auto Provisioning (NAP), KEDA, Vertical Pod Autoscaler (VPA), and Fleet management. HPA automatically scales pods based on CPU, memory, or custom metrics. Cluster Autoscaler adjusts node count when pods cannot be scheduled due to resource constraints. KEDA enables event-driven scaling using external sources like Azure Service Bus, Prometheus metrics, or HTTP requests.",
+      "metadata": {
+        "author": "Sridher Manivel",
+        "category": "container",
+        "url": "https://blog.srinman.com/aks-scaling/",
+        "title": "AKS Scaling Deep Dive",
+        "section": "Scaling Mechanisms Overview"
+      }
+    },
+    {
+      "text": "AKS autoscaling architectural decisions involve choosing between reactive and predictive scaling strategies. HPA works at the pod level and requires resource requests to be defined. Cluster Autoscaler operates at the node level and works in conjunction with HPA. VPA automatically adjusts CPU and memory requests for containers based on historical usage patterns. The combination of these tools provides comprehensive scaling coverage for different workload patterns.",
+      "metadata": {
+        "author": "Sridher Manivel",
+        "category": "container",
+        "url": "https://blog.srinman.com/aks-scaling/",
+        "title": "AKS Scaling Deep Dive",
+        "section": "Scaling Architecture Decisions"
+      }
+    },
+    {
+      "text": "KEDA (Kubernetes Event-Driven Autoscaling) extends Kubernetes autoscaling beyond CPU and memory metrics. It supports over 50 scalers including Azure Service Bus, Storage Queue, Prometheus, HTTP, and database metrics. KEDA can scale deployments to zero when no events are detected, making it ideal for serverless workloads and batch processing scenarios in AKS.",
+      "metadata": {
+        "author": "Sridher Manivel",
+        "category": "container",
+        "url": "https://blog.srinman.com/aks-scaling/",
+        "title": "AKS Scaling Deep Dive",
+        "section": "KEDA Event-Driven Scaling"
+      }
+    },
+    {
+      "text": "Azure Container Apps (ACA) provides a serverless container experience with built-in autoscaling, traffic splitting, and Dapr integration. Unlike AKS, ACA abstracts away Kubernetes complexity and offers automatic HTTPS, service discovery, and integrated monitoring. ACA is ideal for microservices, API backends, and event-driven applications that don't require direct Kubernetes control.",
+      "metadata": {
+        "author": "Sridher Manivel",
+        "category": "container",
+        "url": "https://blog.srinman.com/aks-aca/",
+        "title": "AKS vs Azure Container Apps",
+        "section": "Container Apps Overview"
+      }
+    },
+    {
+      "text": "AKS vs Azure Container Apps architectural trade-offs center on control versus simplicity. AKS provides full Kubernetes API access, custom networking with CNI plugins, node-level control, and extensive ecosystem integration. ACA offers simplified deployment models, automatic scaling without configuration, built-in ingress controllers, and reduced operational overhead. Choose AKS for complex orchestration needs and ACA for streamlined container deployments.",
+      "metadata": {
+        "author": "Sridher Manivel",
+        "category": "container",
+        "url": "https://blog.srinman.com/aks-aca/",
+        "title": "AKS vs Azure Container Apps",
+        "section": "Architectural Trade-offs Analysis"
+      }
+    },
+    {
+      "text": "Certificate management in Kubernetes using cert-manager automates TLS certificate issuance and renewal from Let's Encrypt, HashiCorp Vault, or private CAs. Cert-manager integrates with Kubernetes ingress controllers and uses CRDs like Certificate, Issuer, and ClusterIssuer. It supports DNS-01 and HTTP-01 ACME challenges for automated domain validation and certificate provisioning.",
+      "metadata": {
+        "author": "Sridher Manivel",
+        "category": "container",
+        "url": "https://blog.srinman.com/certmanager-tls-servicemesh/",
+        "title": "Certificates, TLS, and Service Mesh",
+        "section": "Cert-manager Automation"
+      }
+    },
+    {
+      "text": "End-to-end TLS encryption with Istio service mesh provides mTLS between services, traffic encryption, and policy enforcement. Istio automatically issues and rotates certificates for workloads using its built-in CA. Combined with cert-manager for ingress certificates and Istio for internal mTLS, you achieve comprehensive encryption from client to service and between services.",
+      "metadata": {
+        "author": "Sridher Manivel",
+        "category": "container",
+        "url": "https://blog.srinman.com/certmanager-tls-servicemesh/",
+        "title": "Certificates, TLS, and Service Mesh",
+        "section": "Istio mTLS Implementation"
+      }
+    },
+    {
+      "text": "Model Context Protocol (MCP) Memento demo showcases hosting an MCP server on AKS with Azure Files persistent storage for personal memory management. The implementation uses Kubernetes deployments, services, and persistent volume claims to create a scalable MCP server that can store and retrieve personal memories, notes, and context across AI interactions.",
+      "metadata": {
+        "author": "Sridher Manivel",
+        "category": "container",
+        "url": "https://blog.srinman.com/mcpusecaseonazure/",
+        "title": "MCP Memento Demo on Azure",
+        "section": "AKS MCP Server Implementation"
+      }
+    },
+    {
+      "text": "Azure Files integration with AKS provides persistent storage for MCP servers through CSI drivers. The setup involves creating storage classes, persistent volume claims, and mounting Azure Files shares as volumes in pods. This enables stateful MCP applications that maintain context and memory across pod restarts and scaling events.",
+      "metadata": {
+        "author": "Sridher Manivel",
+        "category": "container",
+        "url": "https://blog.srinman.com/mcpusecaseonazure/",
+        "title": "MCP Memento Demo on Azure",
+        "section": "Azure Files Persistent Storage"
+      }
+    },
+    {
+      "text": "Model Context Protocol (MCP) integration with Azure OpenAI enables real-time tool usage and context sharing between AI models and external systems. MCP servers expose tools, resources, and prompts that Azure OpenAI can invoke during conversations. The protocol supports bidirectional communication, allowing AI models to fetch data, execute functions, and maintain stateful interactions.",
+      "metadata": {
+        "author": "Sridher Manivel",
+        "category": "container",
+        "url": "https://blog.srinman.com/mcponazure/",
+        "title": "MCP Azure OpenAI Integration",
+        "section": "MCP Protocol Overview"
+      }
+    },
+    {
+      "text": "Azure OpenAI MCP implementation involves creating MCP servers that expose APIs for tools, resources, and prompts. The server handles initialization, capability negotiation, and request routing. Azure OpenAI clients connect to MCP servers using transport protocols like HTTP or stdio, enabling dynamic tool discovery and execution during AI conversations.",
+      "metadata": {
+        "author": "Sridher Manivel",
+        "category": "container",
+        "url": "https://blog.srinman.com/mcponazure/",
+        "title": "MCP Azure OpenAI Integration",
+        "section": "Production Integration Patterns"
+      }
+    },
+    {
+      "text": "Istio EntraID JWT authentication on AKS verifies Azure Active Directory tokens at the service mesh layer. RequestAuthentication and AuthorizationPolicy CRDs configure JWT validation, issuer verification, and claims-based access control. This enables zero-trust security where every request is authenticated and authorized before reaching application pods.",
+      "metadata": {
+        "author": "Sridher Manivel",
+        "category": "container",
+        "url": "https://blog.srinman.com/aksistiojwtauth/",
+        "title": "Istio EntraID JWT Authentication",
+        "section": "JWT Verification Setup"
+      }
+    },
+    {
+      "text": "AKS Istio JWT authentication configuration involves setting up RequestAuthentication resources that specify JWT issuers, JWKS endpoints, and audience validation. AuthorizationPolicy resources define fine-grained access rules based on JWT claims, user groups, and request attributes. This creates a comprehensive authentication and authorization layer for microservices.",
+      "metadata": {
+        "author": "Sridher Manivel",
+        "category": "container",
+        "url": "https://blog.srinman.com/aksistiojwtauth/",
+        "title": "Istio EntraID JWT Authentication",
+        "section": "Authorization Policy Configuration"
+      }
+    },
+    {
+      "text": "External authentication with Istio on AKS delegates authentication decisions to external services using EnvoyFilter or custom authentication providers. This pattern is useful for integrating with legacy authentication systems, custom OAuth providers, or complex authentication workflows. External auth services can be deployed as sidecars or standalone services within the mesh.",
+      "metadata": {
+        "author": "Sridher Manivel",
+        "category": "container",
+        "url": "https://blog.srinman.com/aksistioexternalauth/",
+        "title": "Istio External Authentication",
+        "section": "External Auth Service Integration"
+      }
+    },
+    {
+      "text": "AKS workload identity enables pods to authenticate to Azure services using managed identities without storing credentials. Workload identity federates Kubernetes service accounts with Azure managed identities through OpenID Connect. This eliminates the need for storing secrets and provides secure, auditable access to Azure resources like Key Vault, Storage, and APIs.",
+      "metadata": {
+        "author": "Sridher Manivel",
+        "category": "container",
+        "url": "https://blog.srinman.com/workloadidentity2apim/",
+        "title": "Workload Identity to APIM",
+        "section": "Workload Identity Setup"
+      }
+    },
+    {
+      "text": "Azure API Management (APIM) integration with AKS workload identity enables secretless authentication for API calls. Pods obtain Azure AD tokens using their federated identity and include these tokens in APIM requests. APIM validates the tokens and applies appropriate policies based on the authenticated identity, enabling secure and auditable API access.",
+      "metadata": {
+        "author": "Sridher Manivel",
+        "category": "container",
+        "url": "https://blog.srinman.com/workloadidentity2apim/",
+        "title": "Workload Identity to APIM",
+        "section": "APIM Token Authentication"
+      }
+    },
+    {
+      "text": "Azure Container Apps traffic splitting enables canary deployments and A/B testing by distributing incoming requests across multiple revisions. Traffic rules can be configured to send percentages of traffic to different application versions, allowing gradual rollouts and risk mitigation. Container Apps automatically manages load balancing and health checks across revisions.",
+      "metadata": {
+        "author": "Sridher Manivel",
+        "category": "container",
+        "url": "https://blog.srinman.com/blog6/",
+        "title": "Container Apps Traffic Splitting",
+        "section": "Canary Deployment Strategy"
+      }
+    },
+    {
+      "text": "Container Apps revision management supports blue-green and canary deployment patterns through traffic splitting configurations. Each deployment creates a new revision while maintaining previous versions. Traffic can be split between revisions using percentage-based rules, enabling zero-downtime deployments and immediate rollback capabilities.",
+      "metadata": {
+        "author": "Sridher Manivel",
+        "category": "container",
+        "url": "https://blog.srinman.com/blog6/",
+        "title": "Container Apps Traffic Splitting",
+        "section": "Revision Management Patterns"
+      }
+    },
+    {
+      "text": "Custom domain configuration with Azure API Management involves setting up custom domains, SSL certificates, and DNS routing. APIM supports multiple custom domains for different environments and API groups. Integration with Azure DNS, Application Gateway, and CDN services enables advanced routing, caching, and global distribution scenarios.",
+      "metadata": {
+        "author": "Sridher Manivel",
+        "category": "container",
+        "url": "https://blog.srinman.com/blog5/",
+        "title": "Custom Domain and APIM",
+        "section": "Domain Configuration Process"
+      }
+    },
+    {
+      "text": "SFTP integration with Azure Blob Storage provides SFTP protocol access to blob containers through Azure Storage SFTP endpoint. This enables legacy applications and file transfer workflows to interact with cloud storage using familiar SFTP commands. Authentication supports both SSH keys and shared access signatures for secure file operations.",
+      "metadata": {
+        "author": "Sridher Manivel",
+        "category": "container",
+        "url": "https://blog.srinman.com/blog4/",
+        "title": "SFTP and Azure Blob Storage",
+        "section": "SFTP Protocol Implementation"
+      }
+    },
+    {
+      "text": "Azure Blob Storage SFTP configuration involves enabling SFTP endpoint, creating local users, configuring home directories, and setting up permissions. SFTP users can be mapped to specific blob containers with read/write permissions. This bridges traditional file transfer workflows with modern cloud storage capabilities.",
+      "metadata": {
+        "author": "Sridher Manivel",
+        "category": "container",
+        "url": "https://blog.srinman.com/blog4/",
+        "title": "SFTP and Azure Blob Storage",
+        "section": "SFTP Configuration and Users"
+      }
+    },
+    {
+      "text": "AKS workload identity practical implementation demonstrates federating Kubernetes service accounts with Azure managed identities. The setup involves enabling OIDC issuer on AKS, creating managed identities, establishing federated credentials, and configuring pod specifications with service account annotations. This enables seamless Azure resource access without credential management.",
+      "metadata": {
+        "author": "Sridher Manivel",
+        "category": "container",
+        "url": "https://blog.srinman.com/blog3/",
+        "title": "AKS Workload Identity in Practice",
+        "section": "Practical Implementation Guide"
+      }
+    },
+    {
+      "text": "Kubernetes as a Service through Azure Kubernetes Service provides managed control plane, automatic updates, integrated monitoring, and enterprise security features. AKS abstracts cluster management complexity while providing full Kubernetes API access. Features include Azure Active Directory integration, network policies, and seamless integration with Azure services.",
+      "metadata": {
+        "author": "Sridher Manivel",
+        "category": "container",
+        "url": "https://blog.srinman.com/blog7/",
+        "title": "Kubernetes as a Service",
+        "section": "AKS Service Overview"
+      }
+    },
+    {
+      "text": "Azure container options comparison covers Azure Container Instances (ACI), Azure Container Apps (ACA), Azure Kubernetes Service (AKS), and Azure Service Fabric. ACI provides simple container execution, ACA offers serverless containers with built-in scaling, AKS delivers full Kubernetes orchestration, and Service Fabric supports stateful services and microservices patterns. Each service targets different use cases and complexity levels.",
+      "metadata": {
+        "author": "Sridher Manivel",
+        "category": "container",
+        "url": "https://blog.srinman.com/blog1/",
+        "title": "Azure Container Options",
+        "section": "Container Service Comparison"
+      }
+    },
+    {
+      "text": "Azure container service selection depends on application requirements, operational complexity, and scaling needs. Choose ACI for simple container tasks, Container Apps for microservices and APIs, AKS for complex orchestration and enterprise workloads, and Service Fabric for stateful distributed applications. Consider factors like networking requirements, state management, and integration with existing systems.",
+      "metadata": {
+        "author": "Sridher Manivel",
+        "category": "container",
+        "url": "https://blog.srinman.com/blog1/",
+        "title": "Azure Container Options",
+        "section": "Service Selection Guidance"
+      }
+    }
+  ]
+}
